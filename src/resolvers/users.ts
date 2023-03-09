@@ -44,7 +44,9 @@ const updateUser = async (parent, args: { id: string; message: string }) => {
       throw new GraphQLError("user doesn't exists");
     }
     if (args.message) {
-      existUser.message = `manual - ${args.message}`;
+      UsersDB.update(_.toString(args.id), {
+        message: `manual - ${args.message}`,
+      } as IUser);
     }
     return existUser;
   } catch (error) {
