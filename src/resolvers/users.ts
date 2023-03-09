@@ -1,7 +1,7 @@
 import { getOne, IUser } from "../database/users";
 import * as UsersDB from "../database/users";
 import _ from "lodash";
-import { logger } from "../utils/logger";
+import logger from "../utils/logger";
 import { GraphQLError } from "graphql";
 import axios from "axios";
 

@@ -3,6 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./database/database";
 import updateUserMessageJobStart from "./jobs/update-user-message";
 import { userService } from "./resolvers/users";
+import logger from "./utils/logger";
 
 // initialize the resolvers
 const resolvers = {
@@ -23,10 +24,8 @@ const server = new ApolloServer({
   resolvers,
 });
 
-  startStandaloneServer(server, {
+startStandaloneServer(server, {
   listen: { port: 4000 },
-}).then(({url})=>{
-  console.log(`🚀  Server ready at: ${url}`);
+}).then(({ url }) => {
+  logger.log("info", `🚀  Server ready at: ${url}`);
 });
-
-

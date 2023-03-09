@@ -32,20 +32,25 @@ type User {
   }
 `;
 
-
-export function getAll(){
-    return users;
+export function getAll() {
+  return users;
 }
 
-export function getOne(id:string){
-    return users.find(_user=>_.toString(_user.id) === _.toString(id));
+export function getOne(id: string) {
+  return users.find((_user) => _.toString(_user.id) === _.toString(id));
 }
 
-export function createOne(user:IUser){
-    users.push(user);
-    return user.id;
+export function createOne(user: IUser) {
+  users.push(user);
+  return user.id;
 }
 
-export function update(id:string,user:IUser){
- 
+export function update(id: string, user: IUser) {
+  const existUser = users.find(
+    (_user) => _.toString(_user.id) === _.toString(id)
+  );
+  for (const property of Object.keys(user)) {
+    existUser[property] = user[property];
+  }
+  return existUser;
 }
